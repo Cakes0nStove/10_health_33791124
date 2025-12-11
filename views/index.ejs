@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vitacore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="main">
+    <div class="hero">
+
+  <aside class="sidebar">
+      <nav id="sidebarMenu" class="sidebar-menu">
+        <h2>Navigation</h2>
+
+
+        <div class ="button-container">
+          <a href="/users/login" class="nav-btn">Login</a>
+          
+          <a href="/about" class="nav-btn">About</a>
+          <a href="/vitamins/survey" class="nav-btn">Personalised Quiz</a>
+          <a href="/users/register" class="nav-btn">Register</a>
+          <a href="/vitamins/search" class="nav-btn">Search</a>
+          <a href="/vitamins/add" class="nav-btn">Add Vitamin</a>
+          <a href="/users/list" class="nav-btn">List of Users</a>
+          <a href="/shop/browse" class="nav-btn">Shop</a>
+
+          <% if (loggedIn) { %>
+          <a href="/users/profile" class="nav-btn">Profile</a>
+          <a href="/users/audit" class="nav-btn">Audit</a>
+          <a href="/users/list" class="nav-btn">List of Users</a>
+          <a href="/users/logout" class="nav-btn">Logout</a>
+          <% } %> </div>
+      </nav>
+  </aside>
+    </div>
+  </div>
+
+</body>
+
+</html>

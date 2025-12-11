@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vitamin Survey</title>
+    <link rel="stylesheet" href="/register.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Find Your Recommended Vitamin</h1>
+
+    <form action="/vitamins/survey-results" method="POST">
+
+        <h3>1. How is your energy level?</h3>
+        <label><input type="radio" name="energy" value="low" required> Low</label><br>
+        <label><input type="radio" name="energy" value="medium"> Medium</label><br>
+        <label><input type="radio" name="energy" value="high"> High</label><br>
+
+        <h3>2. How often do you get sick?</h3>
+        <label><input type="radio" name="immunity" value="often" required> Often</label><br>
+        <label><input type="radio" name="immunity" value="sometimes"> Sometimes</label><br>
+        <label><input type="radio" name="immunity" value="rarely"> Rarely</label><br>
+
+        <h3>3. How is your mood?</h3>
+        <label><input type="radio" name="mood" value="low" required> Low</label><br>
+        <label><input type="radio" name="mood" value="ok"> OK</label><br>
+        <label><input type="radio" name="mood" value="great"> Great</label><br>
+
+        <h3>4. How stressed do you feel most days?</h3>
+        <label><input type="radio" name="stress" value="high" required> High</label><br>
+        <label><input type="radio" name="stress" value="medium"> Medium</label><br>
+        <label><input type="radio" name="stress" value="low"> Low</label><br>
+
+        <h3>5. How well do you sleep at night?</h3>
+        <label><input type="radio" name="sleep" value="poor" required> Poor</label><br>
+        <label><input type="radio" name="sleep" value="average"> Average</label><br>
+        <label><input type="radio" name="sleep" value="great"> Great</label><br>
+
+
+        <button type="submit">Get Recommendation</button>
+    </form>
+</div>
+
+
+</body>
+</html>

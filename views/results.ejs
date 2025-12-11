@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Vitamin Result</title>
+    <link rel="stylesheet"  type="text/css" href="/register.css" />
+
+</head>
+<body>
+
+<h1>Your Recommended Vitamin: <%= vitaminName %></h1>
+<p>Score: <%= vitaminScore %></p>
+
+<h2>All Score Breakdown:</h2>
+<ul>
+    <% for (let v in vitamins) { %>
+        <li><%= v %>: <%= vitamins[v] %></li>
+    <% } %>
+</ul>
+
+<a href="/vitamins/survey">Try Again</a>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Search <%= shopData.shopName %></title>
+    <link rel="stylesheet" type="text/css" href="/register.css" />
+  </head>
+  <body>
+    <h1>Search <%= shopData.shopName %></h1>
+
+    <form action="/vitamins/search-result" method="GET">
+      <p>What vitamin are you interested in?</p>
+      <input id="search-box" type="text" name="search_text" required>
+      <input type="submit" value="Search">
+    </form>
+
+    <% if (typeof keyword !== "undefined") { %>
+      <h2>Results for: "<%= keyword %>"</h2>
+
+      <% if (vitamins.length > 0) { %>
+        <ul>
+          <% vitamins.forEach(vitamin => { %>
+            <li>
+              <strong><%= vitamin.vitamin %></strong>, 
+              £<%= Number(vitamin.price).toFixed(2) %> <br>
+              <em><%= vitamin.description %></em>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No vitamins found.</p>
+      <% } %>
+    <% } %>
+  </body>
+</html>

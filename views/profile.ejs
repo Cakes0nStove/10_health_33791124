@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Profile | <%= shopData.shopName %></title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <style>
+      .profile-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        font-family: Arial, sans-serif;
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .profile-header h1 {
+        margin: 0;
+        font-size: 28px;
+        color: #333;
+      }
+
+      .profile-details {
+        margin-top: 20px;
+      }
+
+      .details-label {
+        font-weight: bold;
+        color: #444;
+        margin-top: 10px;
+      }
+
+      .details-value {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #f2f2f2;
+        border-radius: 5px;
+      }
+
+      .logout-btn {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        background: #d9534f;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .logout-btn:hover {
+        background: #c9302c;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="profile-container">
+      <div class="profile-header">
+        <h1>Your Profile</h1>
+        <p>Welcome back, <strong><%= user.username %></strong>!</p>
+      </div>
+<div class="profile-picture" style="text-align:center;">
+    <% if (user.profile_picture) { %>
+        <img src="/uploads/<%= user.profile_picture %>" 
+             alt="Profile Picture" 
+             style="width:150px; height:150px; object-fit:cover; border-radius:50%;">
+    <% } else { %>
+        <img src="/default-avatar.png" 
+             alt="Default Avatar" 
+             style="width:150px; height:150px; object-fit:cover; border-radius:50%;">
+    <% } %>
+</div>
+<form action="/users/upload-picture" method="POST" enctype="multipart/form-data" style="text-align:center; margin-top:20px;">
+    <input type="file" name="profilePic" accept="image/*" required>
+    <button type="submit">Upload Picture</button>
+</form>
+
+      <div class="profile-details">
+        <div class="details-label">Username:</div>
+        <div class="details-value"><%= user.username %></div>
+
+        <div class="details-label">Email:</div>
+        <div class="details-value"><%= user.email %></div>
+
+      </div>
+
+      <a href="/users/logout" class="logout-btn">Log Out</a>
+    </div>
+
+  </body>
+</html>

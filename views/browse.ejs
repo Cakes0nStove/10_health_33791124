@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <title><%= shopData.shopName %> - Vitamin Shop</title>
+  <link rel="stylesheet" type="text/css" href="/browse.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- left side of my cart -->
+    <div class="products">
+      <h1>Browse Our Vitamins</h1>
+<a href="/" class="home-btn">Home</a>
+      <div class="product-grid">
+        <% availableVitamins.forEach(v => { %>
+          <div class="product-card">
+
+            <h3><%= v.vitamin %></h3>
+            <p class="price">£<%= v.price %></p>
+            <button onclick="addToCart(`<%= v.vitamin %>`, <%= v.price %>)">
+              Add to Cart
+            </button>
+
+
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+<!-- right side of my cart -->
+    <div class="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <h3>Total: £<span id="cart-total">0.00</span></h3>
+
+    </div>
+
+  </div>
+
+<script>
+function loadCart() {
+    const saved = sessionStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+}
+
+function saveCart(cart) {
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function updateCartUI() {
+    const cart = loadCart();
+    const list = document.getElementById("cart-items");
+    const totalElement = document.getElementById("cart-total");
+
+    list.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+        list.innerHTML = "<li>Your cart is empty.</li>";
+    } else {
+        cart.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.vitamin} (x${item.quantity}) - £${item.price}`;
+            list.appendChild(li);
+            total += item.price * item.quantity;
+        });
+    }
+
+    totalElement.textContent = total.toFixed(2);
+}
+
+function addToCart(vitamin, price) {
+    let cart = loadCart();
+
+    const existing = cart.find(item => item.vitamin === vitamin);
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ vitamin, price, quantity: 1 });
+    }
+
+    saveCart(cart);
+    updateCartUI();
+}
+  
+// Load cart UI on page load
+window.onload = updateCartUI;
+</script>
+
+
+</body>
+</html>

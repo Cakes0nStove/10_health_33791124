@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=shopData.shopName%>: Add Vitamin</title>
+    <link rel="stylesheet"  type="text/css" href="/register.css" />
+  </head>
+  <body>
+    <h1><%=shopData.shopName%>: Add Vitamin</h1>
+    
+    <form method="POST" action="/vitamins/vitaminadded">
+        <p>Vitamin name: <input id="vitamin" type="text" name="vitamin" /></p>
+        <p>Price: <input id="price" type="text" name="price" /></p>
+        <p>Description: <input id="description" type="text" name="description" /></p>
+        <input type="submit" value="Add Vitamin" />
+    </form>
+
+  </body>
+</html>
