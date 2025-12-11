@@ -143,7 +143,7 @@ router.post('/loggedin', function (req, res, next) {
 });
 router.post('/upload-picture', upload.single('profilePic'), (req, res) => {
     if (!req.session.loggedIn) {
-        return res.redirect('usr/278/users/login');
+        return res.redirect('./login');
     }
 
     const username = req.session.username;
@@ -154,7 +154,7 @@ router.post('/upload-picture', upload.single('profilePic'), (req, res) => {
         [imageFile, username],
         (err) => {
             if (err) throw err;
-            return res.redirect('usr/278/users/login');
+            return res.redirect('./login');
         }
     );
 });
