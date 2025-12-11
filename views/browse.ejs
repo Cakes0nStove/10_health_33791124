@@ -13,8 +13,18 @@
       <h1>Browse Our Vitamins</h1>
 <a href="/" class="home-btn">Home</a>
       <div class="product-grid">
+        <form id="sortForm" method="GET" action="/shop/browse">
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
+        <option value="name-asc" <%= sort === "name-asc" ? "selected" : "" %>>Name (A–Z)</option>
+        <option value="name-desc" <%= sort === "name-desc" ? "selected" : "" %>>Name (Z–A)</option>
+        <option value="price-asc" <%= sort === "price-asc" ? "selected" : "" %>>Price (Low → High)</option>
+        <option value="price-desc" <%= sort === "price-desc" ? "selected" : "" %>>Price (High → Low)</option>
+    </select>
+</form>
         <% availableVitamins.forEach(v => { %>
           <div class="product-card">
+            
 
             <h3><%= v.vitamin %></h3>
             <p class="price">£<%= v.price %></p>
