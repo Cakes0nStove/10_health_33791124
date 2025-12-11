@@ -45,10 +45,8 @@ router.post('/registered',
     check('last').isAlpha().withMessage('Last name must only contain letters'),
 ], 
     function (req, res, next) {
-    console.log('error1')
     const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            console.log('error3')
 
             return res.render('register.ejs', { errors: errors.array() });
 
@@ -71,7 +69,6 @@ router.post('/registered',
             req.sanitize(req.body.email),
             hashedPassword
         ]
-            console.log('error2')
 
         db.query(sqlquery, newUser, function(err, result) {
             if (err) {
