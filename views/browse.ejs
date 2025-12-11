@@ -33,6 +33,8 @@
       <h2>Your Cart</h2>
       <ul id="cart-items"></ul>
       <h3>Total: £<span id="cart-total">0.00</span></h3>
+      <button onclick="window.location.href='/checkout'">Checkout</button>
+
 
     </div>
 
@@ -71,21 +73,28 @@ function updateCartUI() {
 }
 
 function addToCart(vitamin, price) {
+    price = Number(price); 
+
     let cart = loadCart();
 
     const existing = cart.find(item => item.vitamin === vitamin);
     if (existing) {
         existing.quantity++;
     } else {
-        cart.push({ vitamin, price, quantity: 1 });
+        cart.push({ 
+            vitamin: vitamin, 
+            price: price, 
+            quantity: 1 
+        });
     }
 
     saveCart(cart);
     updateCartUI();
 }
-  
-// Load cart UI on page load
+
 window.onload = updateCartUI;
+
+
 </script>
 
 

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #ffe6f2;
+        padding: 20px;
+        margin: 0;
+    }
+
+    .checkout-container {
+        max-width: 650px;
+        margin: auto;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2); 
+        border: 2px solid #ffb3d9; 
+    }
+
+    h2 {
+        text-align: center;
+        color: #cc0066;  
+        margin-bottom: 20px;
+    }
+
+    .cart-summary ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .cart-summary li {
+        padding: 12px 0;
+        border-bottom: 1px solid #ffb3d9; 
+        display: flex;
+        justify-content: space-between;
+        color: #660033;
+        font-size: 1.05rem;
+    }
+
+    .total {
+        font-size: 1.4rem;
+        text-align: right;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #cc0066;
+    }
+
+    .payment-methods h3 {
+        margin-top: 20px;
+        color: #cc0066;
+    }
+
+    .payment-methods label {
+        display: block;
+        margin-bottom: 10px;
+        cursor: pointer;
+        background: #ffe6f2;
+        border: 1px solid #ffb3d9;
+        padding: 10px;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+    .payment-methods label:hover {
+        background: #ffd6eb;
+    }
+
+    .pay-btn {
+        width: 100%;
+        padding: 14px;
+        background: #edc7da; 
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+    }
+
+    .pay-btn:hover {
+        background: #e60073; 
+        box-shadow: 0 6px 14px rgba(255, 105, 180, 0.4);
+    }
+</style>
+
+</head>
+<body>
+
+<div class="checkout-container">
+
+    <h2>Checkout</h2>
+
+    <div class="cart-summary">
+        <h3>Your Items:</h3>
+        <ul id="checkout-items"></ul>
+
+        <div class="total">
+            Total: £<span id="checkout-total">0.00</span>
+        </div>
+    </div>
+
+    <h3>Payment Method</h3>
+    <div class="payment-methods">
+        <label><input type="radio" name="payment" value="card" checked> Credit / Debit Card</label>
+        <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+        <label><input type="radio" name="payment" value="apple"> Apple Pay</label>
+        <label><input type="radio" name="payment" value="cash"> Cash on Delivery</label>
+    </div>
+
+    <button class="pay-btn" onclick="completePayment()">Complete Purchase</button>
+
+</div>
+
+
+<script>
+    function loadCheckout() {
+        const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        const list = document.getElementById("checkout-items");
+        const totalBox = document.getElementById("checkout-total");
+
+        let total = 0;
+        list.innerHTML = ""; 
+
+        cart.forEach(item => {
+
+            item.price = Number(item.price);
+            item.quantity = Number(item.quantity);
+
+            const lineTotal = item.price * item.quantity;
+
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${item.vitamin} (x${item.quantity})</span>
+                <span>£${lineTotal.toFixed(2)}</span>
+            `;
+            list.appendChild(li);
+
+            total += lineTotal;
+        });
+
+        totalBox.textContent = total.toFixed(2);
+    }
+
+    function completePayment() {
+        const payment = document.querySelector("input[name='payment']:checked").value;
+
+        alert(
+            "Payment successful!\n\n" +
+            "Method: " + payment.toUpperCase() + "\n" +
+            "Thank you for your purchase!"
+        );
+        sessionStorage.removeItem("cart");
+        window.location.href = "/";
+    }
+
+    loadCheckout();
+</script>
+
+</body>
+</html>
