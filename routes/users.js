@@ -77,7 +77,7 @@ router.post('/registered',
             if (err) {
                 return next(err)
             } else {
-                result =  req.sanitize(req.body.first) + ' '+ req.sanitize(req.body.last) +' you are now registered!  We will send an email to you at ' + req.sanitize(req.body.email)
+                result = 'Hello '+ req.sanitize(req.body.first) + ' '+ req.sanitize(req.body.last) +' you are now registered!  We will send an email to you at ' + req.sanitize(req.body.email)
                 res.send(result)
             }
         })
@@ -116,11 +116,6 @@ router.post('/loggedin', function (req, res, next) {
         // 2. Compare the password with the stored hashed password
         bcrypt.compare(password, user.hashed_password, function(err, match) {
             if (err) return next(err);
-
-            const action = match ? "login_success" : "login_failed_wrong_password";
-            db.query(logAction, [user.username, action], (err) => {
-                if (err) console.error("Audit log insert failed:", err);
-            });
 
             if (match) {
                 req.session.userId = req.sanitize(req.body.username);
