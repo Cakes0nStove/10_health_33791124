@@ -77,7 +77,7 @@ router.post('/registered',
             if (err) {
                 return next(err)
             } else {
-                result = 'Hello '+ req.sanitize(req.body.first) + ' '+ req.sanitize(req.body.last) +' you are now registered!  We will send an email to you at ' + req.sanitize(req.body.email)
+                result =  req.sanitize(req.body.first) + ' '+ req.sanitize(req.body.last) +' you are now registered!  We will send an email to you at ' + req.sanitize(req.body.email)
                 res.send(result)
             }
         })
