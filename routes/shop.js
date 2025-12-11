@@ -39,5 +39,8 @@ router.get('/browse', (req, res, next) => {
     });
 });
 
+router.get('/checkout', (req, res) => {
+    res.render('checkout.ejs');
+});
 
 module.exports = router

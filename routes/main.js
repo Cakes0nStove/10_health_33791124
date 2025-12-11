@@ -8,9 +8,7 @@ router.get('/', (req, res) => {
         loggedIn: req.session.loggedIn || false
     });
 });
-router.get('/checkout', (req, res) => {
-    res.render('checkout.ejs');
-});
+
 
 router.get('/about',function(req, res, next){
     res.render('about.ejs')
