@@ -1,1 +1,11 @@
 home=https://doc.gold.ac.uk/usr/278/
+search=http://www.doc.gold.ac.uk/usr/278/vitamins/search
+login=http://www.doc.gold.ac.uk/usr/278/users/login
+logout=http://www.doc.gold.ac.uk/usr/278/users/logout
+addvitamin=http://www.doc.gold.ac.uk/usr/278/vitamins/add
+survey=http://www.doc.gold.ac.uk/usr/278/vitamins/survey
+shop=http://www.doc.gold.ac.uk/usr/278/shop/browse
+checkout=http://www.doc.gold.ac.uk/usr/278/shop/checkout
+register=http://www.doc.gold.ac.uk/usr/278/users/register
+list=http://www.doc.gold.ac.uk/usr/278/users/list
+profile=http://www.doc.gold.ac.uk/usr/278/users/profile

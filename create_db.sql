@@ -23,13 +23,6 @@ CREATE TABLE IF NOT EXISTS users (
     profile_picture VARCHAR(255) DEFAULT NULL
 );
 
-CREATE TABLE IF NOT EXISTS audit_log (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255),
-    action VARCHAR(255),
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
 # Create the application user
 DROP USER IF EXISTS 'health_app'@'localhost';
 CREATE USER IF NOT EXISTS 'health_app'@'localhost' IDENTIFIED BY 'qwertyuiop'; 

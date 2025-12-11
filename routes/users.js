@@ -103,17 +103,11 @@ router.post('/loggedin', function (req, res, next) {
     const password = req.sanitize(req.body.password);
     // 1. Look up the user in the database
     const sqlquery = "SELECT * FROM users WHERE username = ?";
+
     db.query(sqlquery, [username], function(err, results) {
         if (err) return next(err);
 
-        const logAction = "INSERT INTO audit_log (username, action) VALUES (?, ?)";
-
         if (results.length === 0) {
-            // Log failed attempt with unknown username
-            db.query(logAction, [username, "login_failed_username_not_found"], (err) => {
-                if (err) console.error("Audit log insert failed:", err);
-            });
-
             return res.send("Login failed: Username not found.");
         }
 
@@ -141,6 +135,7 @@ router.post('/loggedin', function (req, res, next) {
         });
     });
 });
+
 router.post('/upload-picture', upload.single('profilePic'), (req, res) => {
     if (!req.session.loggedIn) {
         return res.redirect('./login');
@@ -173,13 +168,6 @@ router.get('/login', function (req, res, next) {
     res.render('login.ejs');  // renders views/login.ejs
 });
 
-router.get('/audit',redirectLogin, function (req, res, next) {
-    const sqlquery = "SELECT * FROM audit_log ORDER BY log_time DESC";
-    db.query(sqlquery, function(err, result) {
-        if (err) return next(err);
-        res.render('audit.ejs', { audit: result });
-    });
-});
 
 router.get('/profile', (req, res) => {
     if (!req.session.loggedIn) {
